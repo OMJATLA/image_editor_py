@@ -17,7 +17,7 @@ REMOVE_BG_URL = "https://engine.prod.bria-api.com/v1/background/remove"
 async def test_server():
     return {"message": "Server is running successfully!"}
 
-@server.post("/remove-background")
+@server.post("https://img.api.stage.shoopy.in/background/remove")
 async def remove_background(request: Request):
         image_data = await request.body()
 
