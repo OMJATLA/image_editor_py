@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir fastapi uvicorn requests
 COPY . .
 
 # Expose the FastAPI default port
-EXPOSE 8000
+EXPOSE 8090
 
 # Run the FastAPI application using Uvicorn
-CMD ["uvicorn", "main:server", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "main:server", "--host", "0.0.0.0", "--port", "8090", "--reload"]
