@@ -20,9 +20,9 @@ async def remove_background(request: Request):
         result = call_bria_api(REMOVE_BG_URL, files={"file": image_data})
         return result
 
-# class ImageRequest(BaseModel):
-#     prompt: str
-#     image: str 
+class ImageRequest(BaseModel):
+    prompt: str
+    image: str 
 
 @server.post("/background/generate")
 async def generate_image(request_data: ImageRequest):
