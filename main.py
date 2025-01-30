@@ -20,26 +20,16 @@ async def remove_background(request: Request):
         result = call_bria_api(REMOVE_BG_URL, files={"file": image_data})
         return result
 
-class ImageRequest(BaseModel):
-    prompt: str
-    image: str 
-
 @server.post("/background/generate")
-async def generate_image(request_data: ImageRequest):
-    image_file =request_data.image
-    result = call_bria_api(REPLACE_BG_URL, data={"bg_prompt": request_data.prompt,"file": image_file})
-    return result
+async def generate_image(request: Request):
+    req_body = await request.body()
+    # result = call_bria_api(REPLACE_BG_URL, data={"bg_prompt": request_data.prompt,"file": image_file})
+    # return result
 
 def call_bria_api(url: str, files=None, data=None, json=None):
-    headers = {
-        "api_token": BRIA_API_TOKEN}
-    try:
-        response = requests.post(url, headers=headers, data=data,files=files,json=json)
-        print(response)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            return 'Failed to process image'
-    except Exception as e:
-        return str(e)
-    
+    headers = {"api_token": BRIA_API_TOKEN}
+    response = requests.post(url, headers=headers, data=data, files=files, json=json)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return 'Failed to process image'
