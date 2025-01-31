@@ -17,6 +17,7 @@ async def test_server():
 @server.post("/background/remove")
 async def remove_background(request: Request):
         image_data = await request.body()
+        print(image_data)
         result = call_bria_api(REMOVE_BG_URL, files={"file": image_data})
         return result
 
