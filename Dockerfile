@@ -4,7 +4,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Install dependencies directly
-RUN pip install --no-cache-dir fastapi uvicorn requests
+RUN pip install --no-cache-dir fastapi uvicorn requests python-multipart
 
 # Copy the application code
 COPY . .
