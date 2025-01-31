@@ -17,13 +17,12 @@ async def test_server():
 @server.post("/background/remove")
 async def remove_background(file: UploadFile = File(...)):
         file_bytes = await file.read()  # Read file as bytes
-        print(file_bytes)
         print(f"Received file: {file.filename}, Size: {len(file_bytes)} bytes")
         result = call_bria_api(REMOVE_BG_URL, files={"file": (file.filename, file_bytes, file.content_type)})
         return result
 
 @server.post("/background/generate")
-async def generate_image(request: Request):
+async def generate_background(request: Request):
     req_body = await request.body()
     # result = call_bria_api(REPLACE_BG_URL, data={"bg_prompt": request_data.prompt,"file": image_file})
     # return result
